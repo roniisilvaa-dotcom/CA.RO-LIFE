@@ -1,144 +1,4 @@
-import { UserProfile, CoupleChallenge, RoutineItem } from "./types";
-
-const createDailyRoutine = (gender: "male" | "female", day: string, workoutName: string): RoutineItem[] => {
-  const isRest = workoutName.toLowerCase().includes("descanso");
-  const routine: RoutineItem[] = [
-    {
-      id: `rot-${gender}-${day}-1`,
-      time: "05:00",
-      title: "Despertar & Hidratação 💧",
-      description: "Acordar e tomar 500ml de água imediatamente.",
-      completed: false,
-      category: "health" as const,
-      day
-    },
-    {
-      id: `rot-${gender}-${day}-2`,
-      time: "05:30",
-      title: "Planejamento Diário 📚",
-      description: "Foco mental, leitura ou organização do dia.",
-      completed: false,
-      category: "other" as const,
-      day
-    },
-    {
-      id: `rot-${gender}-${day}-3`,
-      time: "06:30",
-      title: "Café da Manhã Saudável 🍳",
-      description: "Refeição nutritiva e limpa para iniciar o dia.",
-      completed: false,
-      category: "health" as const,
-      day
-    },
-    {
-      id: `rot-${gender}-${day}-4`,
-      time: "08:00",
-      title: "Foco Produtivo 💻",
-      description: "Início das atividades de trabalho ou estudos.",
-      completed: false,
-      category: "other" as const,
-      day
-    },
-    {
-      id: `rot-${gender}-${day}-5`,
-      time: "12:30",
-      title: "Almoço Balanceado 🥗",
-      description: "Proteínas magras, vegetais e carboidratos complexos.",
-      completed: false,
-      category: "health" as const,
-      day
-    },
-    {
-      id: `rot-${gender}-${day}-6`,
-      time: "15:00",
-      title: "Hidratação da Tarde 🥤",
-      description: "Beber mais 1 litro de água para manter o foco.",
-      completed: false,
-      category: "health" as const,
-      day
-    }
-  ];
-
-  if (!isRest) {
-    routine.push(
-      {
-        id: `rot-${gender}-${day}-7`,
-        time: "18:30",
-        title: `Musculação: ${workoutName} 🏋️‍♂️`,
-        description: "Treino planejado na academia.",
-        completed: false,
-        category: "workout" as const,
-        day
-      },
-      {
-        id: `rot-${gender}-${day}-8`,
-        time: "20:00",
-        title: "Caminhada Funcional 🏃‍♂️",
-        description: "Meta de cardio leve de fim de tarde.",
-        completed: false,
-        category: "cardio" as const,
-        day
-      }
-    );
-  } else {
-    routine.push(
-      {
-        id: `rot-${gender}-${day}-7`,
-        time: "18:30",
-        title: "Recuperação Ativa / Alongamento 🧘‍♂️",
-        description: "Mobilidade ou caminhada leve opcional.",
-        completed: false,
-        category: "cardio" as const,
-        day
-      }
-    );
-  }
-
-  routine.push(
-    {
-      id: `rot-${gender}-${day}-9`,
-      time: "22:00",
-      title: "Ceia Proteica 🥛",
-      description: "Alimentação final leve para suporte muscular.",
-      completed: false,
-      category: "health" as const,
-      day
-    },
-    {
-      id: `rot-${gender}-${day}-10`,
-      time: "22:30",
-      title: "Desconexão & Sono 🛌",
-      description: "Registrar humor/peso e preparar para o descanso.",
-      completed: false,
-      category: "health" as const,
-      day
-    }
-  );
-
-  return routine;
-};
-
-// Generate full weekly routine for Roni
-const roniRoutine = [
-  ...createDailyRoutine("male", "Seg", "Peito e Tríceps"),
-  ...createDailyRoutine("male", "Ter", "Costas e Bíceps"),
-  ...createDailyRoutine("male", "Qua", "Descanso"),
-  ...createDailyRoutine("male", "Qui", "Pernas"),
-  ...createDailyRoutine("male", "Sex", "Ombros e Abdômen"),
-  ...createDailyRoutine("male", "Sáb", "Descanso"),
-  ...createDailyRoutine("male", "Dom", "Descanso")
-];
-
-// Generate full weekly routine for Camila
-const camilaRoutine = [
-  ...createDailyRoutine("female", "Seg", "Pernas e Glúteos (Anterior)"),
-  ...createDailyRoutine("female", "Ter", "Superiores"),
-  ...createDailyRoutine("female", "Qua", "Descanso"),
-  ...createDailyRoutine("female", "Qui", "Posterior e Glúteos"),
-  ...createDailyRoutine("female", "Sex", "Descanso"),
-  ...createDailyRoutine("female", "Sáb", "Descanso"),
-  ...createDailyRoutine("female", "Dom", "Descanso")
-];
+import { UserProfile, CoupleChallenge } from "./types";
 
 export const initialRoniProfile: UserProfile = {
   id: "male",
@@ -149,7 +9,7 @@ export const initialRoniProfile: UserProfile = {
   currentWeight: 84.5,
   height: 182,
   streakDays: 0,
-  aiInsights: "Seja bem-vindo ao CA.RO LIFE! Registre suas primeiras atividades e check-ins para que a Inteligência Artificial comece a gerar seus insights semanais personalizados.",
+  aiInsights: "Seja bem-vindo ao CA.RO LIFE! Cadastre suas rotinas diárias e registre suas atividades para que a Inteligência Artificial comece a gerar seus insights semanais personalizados.",
   workoutPlans: [
     {
       id: "male-seg",
@@ -337,7 +197,7 @@ export const initialRoniProfile: UserProfile = {
   activities: [],
   checkins: [],
   measurements: [],
-  routine: roniRoutine
+  routine: []
 };
 
 export const initialCamilaProfile: UserProfile = {
@@ -349,7 +209,7 @@ export const initialCamilaProfile: UserProfile = {
   currentWeight: 59.2,
   height: 165,
   streakDays: 0,
-  aiInsights: "Seja bem-vinda ao CA.RO LIFE! Registre suas primeiras atividades e check-ins para que a Inteligência Artificial comece a gerar seus insights semanais personalizados.",
+  aiInsights: "Seja bem-vinda ao CA.RO LIFE! Cadastre suas rotinas diárias e registre suas atividades para que a Inteligência Artificial comece a gerar seus insights semanais personalizados.",
   workoutPlans: [
     {
       id: "female-seg",
@@ -484,7 +344,7 @@ export const initialCamilaProfile: UserProfile = {
   activities: [],
   checkins: [],
   measurements: [],
-  routine: camilaRoutine
+  routine: []
 };
 
 export const initialCoupleChallenges: CoupleChallenge[] = [
