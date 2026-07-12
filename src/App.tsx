@@ -50,13 +50,29 @@ export default function App() {
     async function loadInitialData() {
       try {
         const roniDb = await fetchProfileFromBackend("male");
-        if (roniDb) setRoniProfile(roniDb);
+        if (roniDb) {
+          setRoniProfile(roniDb);
+        } else {
+          // DB has no records, force reset local storage with clean slate
+          setRoniProfile(initialRoniProfile);
+          await saveProfileToBackend(initialRoniProfile);
+        }
 
         const camilaDb = await fetchProfileFromBackend("female");
-        if (camilaDb) setCamilaProfile(camilaDb);
+        if (camilaDb) {
+          setCamilaProfile(camilaDb);
+        } else {
+          setCamilaProfile(initialCamilaProfile);
+          await saveProfileToBackend(initialCamilaProfile);
+        }
 
         const challengesDb = await fetchChallengesFromBackend();
-        if (challengesDb) setCoupleChallenges(challengesDb);
+        if (challengesDb) {
+          setCoupleChallenges(challengesDb);
+        } else {
+          setCoupleChallenges(initialCoupleChallenges);
+          await saveChallengesToBackend(initialCoupleChallenges);
+        }
       } catch (err) {
         console.error("Failed to sync from database:", err);
       }
