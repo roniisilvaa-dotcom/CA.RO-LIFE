@@ -200,27 +200,35 @@ export const initialRoniProfile: UserProfile = {
   routine: [
     {
       id: "rot-roni-1",
-      time: "07:00",
-      title: "Check-in Diário",
-      description: "Peso, sono, energia e humor de manhã.",
+      time: "20:15",
+      title: "Treino de Musculação",
+      description: "Ficha de Segunda-feira (Peito e Tríceps).",
       completed: false,
-      category: "health"
+      category: "workout"
     },
     {
       id: "rot-roni-2",
-      time: "12:30",
-      title: "Meta de Hidratação",
-      description: "Consumir 2 litros de água até o início da tarde.",
+      time: "21:15",
+      title: "Caminhada Funcional",
+      description: "Caminhada leve ao redor de Alphaville.",
+      completed: false,
+      category: "cardio"
+    },
+    {
+      id: "rot-roni-3",
+      time: "22:00",
+      title: "Ceia Proteica",
+      description: "Meta de hidratação e refeição proteica final.",
       completed: false,
       category: "health"
     },
     {
-      id: "rot-roni-3",
-      time: "18:30",
-      title: "Treino do Dia",
-      description: "Academia · Duração estimada de 50 minutos.",
+      id: "rot-roni-4",
+      time: "22:30",
+      title: "Check-in da Noite & Sono",
+      description: "Registrar humor, disposição e sono.",
       completed: false,
-      category: "workout"
+      category: "health"
     }
   ]
 };
@@ -372,27 +380,35 @@ export const initialCamilaProfile: UserProfile = {
   routine: [
     {
       id: "rot-camila-1",
-      time: "07:00",
-      title: "Check-in Diário",
-      description: "Peso, sono, energia e humor de manhã.",
+      time: "20:15",
+      title: "Treino de Musculação",
+      description: "Ficha de Segunda-feira (Pernas e Glúteos).",
       completed: false,
-      category: "health"
+      category: "workout"
     },
     {
       id: "rot-camila-2",
-      time: "12:30",
-      title: "Meta de Hidratação",
-      description: "Consumir 1,5 litros de água até o almoço.",
+      time: "21:15",
+      title: "Caminhada Funcional",
+      description: "Caminhada leve ao redor de Alphaville.",
+      completed: false,
+      category: "cardio"
+    },
+    {
+      id: "rot-camila-3",
+      time: "22:00",
+      title: "Ceia Proteica",
+      description: "Meta de hidratação e refeição proteica final.",
       completed: false,
       category: "health"
     },
     {
-      id: "rot-camila-3",
-      time: "18:30",
-      title: "Treino do Dia",
-      description: "Academia · Duração estimada de 55 minutos.",
+      id: "rot-camila-4",
+      time: "22:30",
+      title: "Check-in da Noite & Sono",
+      description: "Registrar humor, disposição e sono.",
       completed: false,
-      category: "workout"
+      category: "health"
     }
   ]
 };
