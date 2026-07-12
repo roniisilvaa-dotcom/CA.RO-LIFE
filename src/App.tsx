@@ -17,7 +17,8 @@ import {
   fetchProfileFromBackend,
   saveProfileToBackend,
   fetchChallengesFromBackend,
-  saveChallengesToBackend
+  saveChallengesToBackend,
+  requestNotificationPermission
 } from "./utils";
 
 export default function App() {
@@ -61,6 +62,7 @@ export default function App() {
       }
     }
     loadInitialData();
+    requestNotificationPermission();
   }, []);
 
   // Persist profiles on changes

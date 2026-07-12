@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { UserProfile, Activity, GPSPoint } from "../types";
-import { calculatePace, estimateCalories, formatDuration, calculateDistance } from "../utils";
+import { calculatePace, estimateCalories, formatDuration, calculateDistance, sendNotification } from "../utils";
 import MapContainer from "./MapContainer";
 import { Play, Pause, Square, Trash2, MapPin, Activity as ActivityIcon, Trophy, Heart } from "lucide-react";
 
@@ -43,6 +43,19 @@ export default function ActivityView({ profile, onSaveActivity }: ActivityViewPr
       stopSimulation();
     };
   }, []);
+
+  // Trigger system notification automatically on completing each kilometer
+  const prevKmRef = useRef<number>(0);
+  useEffect(() => {
+    const currentKm = Math.floor(distance);
+    if (currentKm > prevKmRef.current && isTracking) {
+      sendNotification(
+        "CA.RO LIFE — Progresso!",
+        `Parabéns! Você completou ${currentKm} km na sua caminhada!`
+      );
+      prevKmRef.current = currentKm;
+    }
+  }, [distance, isTracking]);
 
   const startTimer = () => {
     if (timerRef.current) return;
@@ -175,6 +188,7 @@ export default function ActivityView({ profile, onSaveActivity }: ActivityViewPr
     setIsPaused(false);
     setSeconds(0);
     setDistance(0);
+    prevKmRef.current = 0;
     setPoints([]);
     setSelectedHistoricalRoute([]); // Clear historical overlay
     
@@ -224,6 +238,10 @@ export default function ActivityView({ profile, onSaveActivity }: ActivityViewPr
     };
 
     onSaveActivity(newActivity);
+    sendNotification(
+      "CA.RO LIFE — Atividade Concluída!",
+      `Parabéns! ${activityType} finalizada com ${distance.toFixed(2)} km em ${formatDuration(seconds)}.`
+    );
     resetTrackingState();
     alert("Atividade salva com sucesso no seu perfil!");
   };

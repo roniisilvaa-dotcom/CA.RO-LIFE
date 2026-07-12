@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { UserProfile, WorkoutPlan, Exercise, ExerciseSet } from "../types";
-import { formatDuration } from "../utils";
+import { formatDuration, sendNotification } from "../utils";
 import { Play, Check, Clock, Plus, Trash2, ArrowLeft, Trophy, AlertCircle, Sparkles } from "lucide-react";
 
 interface WorkoutViewProps {
@@ -98,6 +98,7 @@ export default function WorkoutView({
           } catch (e) {
             // Suppress Web Audio autoplay policy restriction error
           }
+          sendNotification("CA.RO LIFE — Descanso Concluído", "Hora de iniciar a próxima série!");
           return 0;
         }
         return prev - 1;

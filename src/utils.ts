@@ -186,3 +186,33 @@ export async function saveChallengesToBackend(challenges: any[]): Promise<void> 
   }
 }
 
+/**
+ * Requests permission for system browser notifications
+ */
+export function requestNotificationPermission(): void {
+  if (typeof window !== "undefined" && "Notification" in window) {
+    if (Notification.permission === "default") {
+      Notification.requestPermission();
+    }
+  }
+}
+
+/**
+ * Sends a system notification if permission is granted
+ */
+export function sendNotification(title: string, body: string): void {
+  if (typeof window !== "undefined" && "Notification" in window) {
+    if (Notification.permission === "granted") {
+      try {
+        new Notification(title, {
+          body,
+          tag: "carolife-notif",
+        });
+      } catch (err) {
+        console.warn("Notification error:", err);
+      }
+    }
+  }
+}
+
+
