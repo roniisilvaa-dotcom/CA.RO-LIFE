@@ -159,6 +159,21 @@ app.post("/api/challenges", async (req, res) => {
   }
 });
 
+// POST Reset database tables (Truncate)
+app.post("/api/db/reset", async (req, res) => {
+  if (!pool) {
+    return res.json({ success: true, note: "No database connection" });
+  }
+
+  try {
+    await pool.query("TRUNCATE TABLE profiles, couple_challenges");
+    return res.json({ success: true });
+  } catch (error: any) {
+    console.error("Error resetting database tables:", error);
+    return res.status(500).json({ success: false, error: error.message });
+  }
+});
+
 // --- GEMINI ENDPOINTS ---
 
 // Chat endpoint

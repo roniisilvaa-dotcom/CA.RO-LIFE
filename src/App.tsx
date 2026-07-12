@@ -97,6 +97,32 @@ export default function App() {
     saveChallengesToBackend(coupleChallenges);
   }, [coupleChallenges]);
 
+  // Trigger system reset
+  const handleResetSystem = async () => {
+    if (
+      !confirm(
+        "ATENÇÃO: Tem certeza que deseja zerar todos os dados do sistema? Isso apagará permanentemente todos os treinos, caminhadas, check-ins e metas salvos no banco de dados para ambos os perfis!"
+      )
+    ) {
+      return;
+    }
+
+    try {
+      const res = await fetch("/api/db/reset", { method: "POST" });
+      const result = await res.json();
+      if (result.success) {
+        localStorage.clear();
+        alert("Sistema zerado com sucesso! Recarregando...");
+        window.location.reload();
+      } else {
+        alert("Falha ao zerar dados. Tente novamente.");
+      }
+    } catch (err) {
+      console.error("Error resetting system:", err);
+      alert("Erro de comunicação com o servidor ao resetar.");
+    }
+  };
+
   // Handle Switch Profile
   const handleSwitchProfile = (gender: "male" | "female") => {
     setCurrentProfileId(gender);
@@ -435,6 +461,15 @@ export default function App() {
                     Perfil feminino · foco em pernas, glúteos, definição e rotina saudável.
                   </span>
                 </div>
+              </button>
+            </div>
+
+            <div className="mt-8 pt-6 border-t border-white/5 flex justify-end">
+              <button
+                onClick={handleResetSystem}
+                className="px-4 py-2.5 rounded-xl bg-red-600/10 border border-red-500/20 text-red-400 hover:bg-red-600/20 text-xs font-bold transition-all cursor-pointer"
+              >
+                ⚠ Zerar Todos os Dados do Sistema
               </button>
             </div>
           </div>
