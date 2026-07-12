@@ -8,8 +8,8 @@ export const initialRoniProfile: UserProfile = {
   targetGoal: "condicionamento físico, caminhada, ganho de força e rotina saudável",
   currentWeight: 84.5,
   height: 182,
-  streakDays: 8,
-  aiInsights: "**Análise IA Semanal — Roni**\n\n• **Progresso de Cardio:** Seu ritmo nas caminhadas em Alphaville melhorou 7% nas últimas sessões. Excelente constância!\n• **Musculação:** Se você conseguiu completar todas as repetições de supino com 22 kg, experimente subir para 24 kg na primeira série do próximo Treino A.\n• **Dica de Recuperação:** Com 7.5 horas de sono médio, seu corpo está se recuperando bem. Tente focar em hidratação pré-treino.",
+  streakDays: 0,
+  aiInsights: "Seja bem-vindo ao CA.RO LIFE! Registre suas primeiras atividades e check-ins para que a Inteligência Artificial comece a gerar seus insights semanais personalizados.",
   workoutPlans: [
     {
       id: "male-seg",
@@ -194,53 +194,16 @@ export const initialRoniProfile: UserProfile = {
       exercises: []
     }
   ],
-  activities: [
-    {
-      id: "act-roni-1",
-      type: "Caminhada",
-      title: "Caminhada em Alphaville",
-      date: "2026-07-12",
-      duration: "00:28:45",
-      seconds: 1725,
-      distance: 3.20,
-      avgPace: "08:59/km",
-      calories: 195,
-      feeling: "otimo",
-      isCouple: false,
-      route: []
-    }
-  ],
-  checkins: [
-    {
-      date: "2026-07-12",
-      sleepHours: 7.5,
-      energyLevel: 8,
-      mood: "focado",
-      musclePain: 3,
-      disposition: 8,
-      weight: 84.5
-    }
-  ],
-  measurements: [
-    {
-      date: "2026-07-12",
-      weight: 84.5,
-      chest: 104,
-      waist: 89,
-      hips: 98,
-      thighL: 60,
-      thighR: 60,
-      armL: 38.5,
-      armR: 39
-    }
-  ],
+  activities: [],
+  checkins: [],
+  measurements: [],
   routine: [
     {
       id: "rot-roni-1",
       time: "07:00",
       title: "Check-in Diário",
       description: "Peso, sono, energia e humor de manhã.",
-      completed: true,
+      completed: false,
       category: "health"
     },
     {
@@ -248,7 +211,7 @@ export const initialRoniProfile: UserProfile = {
       time: "12:30",
       title: "Meta de Hidratação",
       description: "Consumir 2 litros de água até o início da tarde.",
-      completed: true,
+      completed: false,
       category: "health"
     },
     {
@@ -270,8 +233,8 @@ export const initialCamilaProfile: UserProfile = {
   targetGoal: "condicionamento, definição, foco em pernas, glúteos e rotina saudável",
   currentWeight: 59.2,
   height: 165,
-  streakDays: 6,
-  aiInsights: "**Análise IA Semanal — Camila**\n\n• **Progresso de Cardio:** Constância fantástica! Suas caminhadas em Alphaville estão em ritmo excelente e estável.\n• **Membros Inferiores:** Mantenha a carga de 45 kg na elevação pélvica, mas tente focar na contração isométrica de 2 segundos no pico do movimento.\n• **Equilíbrio diário:** Ótimo aproveitamento de sono de 8 horas. Seu nível de disposição está excelente hoje.",
+  streakDays: 0,
+  aiInsights: "Seja bem-vinda ao CA.RO LIFE! Registre suas primeiras atividades e check-ins para que a Inteligência Artificial comece a gerar seus insights semanais personalizados.",
   workoutPlans: [
     {
       id: "female-seg",
@@ -403,53 +366,16 @@ export const initialCamilaProfile: UserProfile = {
       exercises: []
     }
   ],
-  activities: [
-    {
-      id: "act-camila-1",
-      type: "Caminhada",
-      title: "Caminhada Leve Alphaville",
-      date: "2026-07-12",
-      duration: "00:25:10",
-      seconds: 1510,
-      distance: 2.50,
-      avgPace: "10:04/km",
-      calories: 140,
-      feeling: "otimo",
-      isCouple: false,
-      route: []
-    }
-  ],
-  checkins: [
-    {
-      date: "2026-07-12",
-      sleepHours: 8.0,
-      energyLevel: 9,
-      mood: "radiante",
-      musclePain: 2,
-      disposition: 9,
-      weight: 59.2
-    }
-  ],
-  measurements: [
-    {
-      date: "2026-07-12",
-      weight: 59.2,
-      chest: 88,
-      waist: 66,
-      hips: 95,
-      thighL: 52,
-      thighR: 52,
-      armL: 26,
-      armR: 26.5
-    }
-  ],
+  activities: [],
+  checkins: [],
+  measurements: [],
   routine: [
     {
       id: "rot-camila-1",
       time: "07:00",
       title: "Check-in Diário",
       description: "Peso, sono, energia e humor de manhã.",
-      completed: true,
+      completed: false,
       category: "health"
     },
     {
@@ -457,7 +383,7 @@ export const initialCamilaProfile: UserProfile = {
       time: "12:30",
       title: "Meta de Hidratação",
       description: "Consumir 1,5 litros de água até o almoço.",
-      completed: true,
+      completed: false,
       category: "health"
     },
     {
@@ -477,7 +403,7 @@ export const initialCoupleChallenges: CoupleChallenge[] = [
     title: "Meta de Quilometragem Semanal",
     description: "Caminhar ou correr 40 km juntos esta semana.",
     targetValue: 40.0,
-    currentValue: 31.4,
+    currentValue: 0,
     unit: "km",
     completed: false
   },
@@ -486,16 +412,16 @@ export const initialCoupleChallenges: CoupleChallenge[] = [
     title: "Dias Ativos em Casal",
     description: "Sincronizar treinos ou caminhadas no mesmo dia por 5 dias.",
     targetValue: 5,
-    currentValue: 4,
+    currentValue: 0,
     unit: "dias",
     completed: false
   },
   {
     id: "challenge-3",
     title: "Total de Calorias Queimadas",
-    description: "Alcançar 3.000 kcal in atividades aeróbicas conjuntas.",
+    description: "Alcançar 3.000 kcal em atividades aeróbicas conjuntas.",
     targetValue: 3000,
-    currentValue: 2150,
+    currentValue: 0,
     unit: "kcal",
     completed: false
   }
