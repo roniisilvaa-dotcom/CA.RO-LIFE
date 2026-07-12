@@ -1,0 +1,6 @@
+{
+  "name": "CA.RO LIFE",
+  "description": "Plataforma premium de rotina, treinos, caminhada, corrida, evolução física e acompanhamento em casal.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
