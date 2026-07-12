@@ -9,7 +9,16 @@ import CoupleView from "./components/CoupleView";
 
 import { UserProfile, Activity, WorkoutPlan, DailyCheckin, BodyMeasurement, RoutineItem, CoupleChallenge } from "./types";
 import { initialRoniProfile, initialCamilaProfile, initialCoupleChallenges } from "./initialData";
-import { loadUserProfile, saveUserProfile, loadCoupleChallenges, saveCoupleChallenges } from "./utils";
+import {
+  loadUserProfile,
+  saveUserProfile,
+  loadCoupleChallenges,
+  saveCoupleChallenges,
+  fetchProfileFromBackend,
+  saveProfileToBackend,
+  fetchChallengesFromBackend,
+  saveChallengesToBackend
+} from "./utils";
 
 export default function App() {
   const [currentProfileId, setCurrentProfileId] = useState<"male" | "female">("male");
@@ -35,17 +44,39 @@ export default function App() {
     return currentProfileId === "male" ? roniProfile : camilaProfile;
   }, [currentProfileId, roniProfile, camilaProfile]);
 
+  // Synchronize initial data from backend database on mount
+  useEffect(() => {
+    async function loadInitialData() {
+      try {
+        const roniDb = await fetchProfileFromBackend("male");
+        if (roniDb) setRoniProfile(roniDb);
+
+        const camilaDb = await fetchProfileFromBackend("female");
+        if (camilaDb) setCamilaProfile(camilaDb);
+
+        const challengesDb = await fetchChallengesFromBackend();
+        if (challengesDb) setCoupleChallenges(challengesDb);
+      } catch (err) {
+        console.error("Failed to sync from database:", err);
+      }
+    }
+    loadInitialData();
+  }, []);
+
   // Persist profiles on changes
   useEffect(() => {
     saveUserProfile(roniProfile);
+    saveProfileToBackend(roniProfile);
   }, [roniProfile]);
 
   useEffect(() => {
     saveUserProfile(camilaProfile);
+    saveProfileToBackend(camilaProfile);
   }, [camilaProfile]);
 
   useEffect(() => {
     saveCoupleChallenges(coupleChallenges);
+    saveChallengesToBackend(coupleChallenges);
   }, [coupleChallenges]);
 
   // Handle Switch Profile

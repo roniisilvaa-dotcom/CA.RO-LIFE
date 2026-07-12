@@ -131,3 +131,58 @@ export function loadCoupleChallenges(fallback: any[]): any[] {
   }
   return fallback;
 }
+
+export async function fetchProfileFromBackend(gender: "male" | "female"): Promise<UserProfile | null> {
+  try {
+    const res = await fetch(`/api/profiles/${gender}`);
+    const result = await res.json();
+    if (result.success && result.data) {
+      return result.data;
+    }
+  } catch (error) {
+    console.error(`Error loading profile ${gender} from backend`, error);
+  }
+  return null;
+}
+
+export async function saveProfileToBackend(profile: UserProfile): Promise<void> {
+  try {
+    await fetch(`/api/profiles/${profile.gender}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(profile),
+    });
+  } catch (error) {
+    console.error(`Error saving profile ${profile.gender} to backend`, error);
+  }
+}
+
+export async function fetchChallengesFromBackend(): Promise<any[] | null> {
+  try {
+    const res = await fetch("/api/challenges");
+    const result = await res.json();
+    if (result.success && result.data) {
+      return result.data;
+    }
+  } catch (error) {
+    console.error("Error loading challenges from backend", error);
+  }
+  return null;
+}
+
+export async function saveChallengesToBackend(challenges: any[]): Promise<void> {
+  try {
+    await fetch("/api/challenges", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(challenges),
+    });
+  } catch (error) {
+    console.error("Error saving challenges to backend", error);
+  }
+}
+
