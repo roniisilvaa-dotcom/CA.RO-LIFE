@@ -48,6 +48,7 @@ export default function RoutineView({
       description: taskDesc,
       completed: false,
       category: taskCategory,
+      day: selectedDay,
     });
 
     // Reset
@@ -65,6 +66,10 @@ export default function RoutineView({
   };
 
   const waterPercent = Math.min(Math.round((waterDrunk / waterTarget) * 100), 100);
+
+  const dayTasks = profile.routine
+    .filter((item) => item.day === selectedDay || (!item.day && selectedDay === "Seg"))
+    .sort((a, b) => a.time.localeCompare(b.time));
 
   return (
     <div className="space-y-6">
@@ -189,11 +194,11 @@ export default function RoutineView({
 
         {/* Tasks List */}
         <div className="rounded-2xl border border-white/5 bg-[#121513] p-5 shadow-lg space-y-3">
-          {profile.routine.length === 0 ? (
+          {dayTasks.length === 0 ? (
             <p className="text-[#9ca39d] text-sm text-center py-6">Nenhum compromisso agendado para este dia.</p>
           ) : (
             <div className="divide-y divide-white/5 space-y-1">
-              {profile.routine.map((item) => (
+              {dayTasks.map((item) => (
                 <div
                   key={item.id}
                   className="flex items-center justify-between py-3.5 first:pt-0 last:pb-0"

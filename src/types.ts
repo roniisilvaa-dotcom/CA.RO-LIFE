@@ -72,6 +72,7 @@ export interface RoutineItem {
   description: string;
   completed: boolean;
   category: 'workout' | 'cardio' | 'health' | 'other';
+  day?: string;
 }
 
 export interface UserProfile {
