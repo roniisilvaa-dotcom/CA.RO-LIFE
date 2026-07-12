@@ -117,6 +117,7 @@ export default function ActivityView({ profile, onSaveActivity }: ActivityViewPr
     // Success handler
     const onSuccess = (position: GeolocationPosition) => {
       setGpsStatus("active");
+      stopSimulation(); // Turn off simulator since we have real coordinates!
       const { latitude, longitude, accuracy } = position.coords;
       
       const newPoint: GPSPoint = {
@@ -174,7 +175,7 @@ export default function ActivityView({ profile, onSaveActivity }: ActivityViewPr
     setIsPaused(false);
     setSeconds(0);
     setDistance(0);
-    setPoints([{ latitude: ALPHAVILLE_LAT, longitude: ALPHAVILLE_LON, timestamp: Date.now(), accuracy: 5 }]);
+    setPoints([]);
     setSelectedHistoricalRoute([]); // Clear historical overlay
     
     startTimer();

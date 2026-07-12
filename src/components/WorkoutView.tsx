@@ -306,7 +306,7 @@ export default function WorkoutView({
                   </p>
                 </div>
 
-                {!isEditing && (
+                {!isEditing && activePlan && activePlan.exercises.length > 0 && (
                   <button
                     onClick={handleStartWorkout}
                     className="px-5 py-3 bg-[#c7ff4a] hover:bg-[#b6f033] text-[#0b0d0c] text-xs font-black rounded-xl hover:shadow-[0_4px_15px_rgba(199,255,74,0.2)] transition-all flex items-center gap-1.5 cursor-pointer shrink-0"
@@ -317,11 +317,22 @@ export default function WorkoutView({
               </div>
 
               {/* Exercises Checklist */}
-              <div className="space-y-3">
-                {(isEditing
-                  ? editingPlans.find((p) => p.id === selectedPlanId)?.exercises || []
-                  : activePlan.exercises
-                ).map((ex, exIdx) => (
+              {!isEditing && activePlan && activePlan.exercises.length === 0 ? (
+                <div className="p-8 border border-white/5 rounded-3xl bg-[#171b18] text-center space-y-4">
+                  <div className="mx-auto w-12 h-12 rounded-full bg-[#c7ff4a]/10 flex items-center justify-center text-[#c7ff4a]">
+                    <Sparkles size={24} />
+                  </div>
+                  <h4 className="text-white text-lg font-bold">Dia de Descanso & Recuperação</h4>
+                  <p className="text-[#9ca39d] text-sm max-w-md mx-auto">
+                    Hoje é dia de permitir que as fibras musculares se recuperem e se fortaleçam. Foque na hidratação, alimentação saudável e boa qualidade de sono!
+                  </p>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  {(isEditing
+                    ? editingPlans.find((p) => p.id === selectedPlanId)?.exercises || []
+                    : activePlan?.exercises || []
+                  ).map((ex, exIdx) => (
                   <div
                     key={ex.id}
                     className="p-4 border border-white/5 rounded-2xl bg-[#171b18] flex items-center justify-between gap-4"
@@ -381,7 +392,7 @@ export default function WorkoutView({
                     </button>
                   </div>
                 )}
-              </div>
+              </div>)}
             </div>
           )}
         </div>
