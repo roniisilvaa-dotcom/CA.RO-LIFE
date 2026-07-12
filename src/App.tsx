@@ -464,12 +464,14 @@ export default function App() {
               </button>
             </div>
 
-            <div className="mt-8 pt-6 border-t border-white/5 flex justify-end">
+            <div className="mt-8 pt-6 border-t border-white/5 flex flex-col items-center gap-3">
+              <span className="text-[10px] uppercase font-mono text-[#9ca39d] tracking-wider">Painel de Controle</span>
               <button
                 onClick={handleResetSystem}
-                className="px-4 py-2.5 rounded-xl bg-red-600/10 border border-red-500/20 text-red-400 hover:bg-red-600/20 text-xs font-bold transition-all cursor-pointer"
+                className="w-full py-4.5 rounded-2xl bg-[#c7ff4a] hover:bg-[#b6f033] text-[#0b0d0c] font-black text-xs uppercase tracking-[0.2em] transition-all cursor-pointer shadow-[0_4px_25px_rgba(199,255,74,0.2)] hover:shadow-[0_4px_30px_rgba(199,255,74,0.35)] flex items-center justify-center gap-2"
               >
-                ⚠ Zerar Todos os Dados do Sistema
+                <span>⚠</span>
+                <span>CA.RO LIFE — ZERAR SISTEMA</span>
               </button>
             </div>
           </div>
